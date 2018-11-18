@@ -9,7 +9,7 @@ class Article_catAction extends AdministrationAction{
 	}
 	//分类列表
 	public function lists(){
-		$articlecat = $this->d->article_cat_list(0, 0, false);		
+		$articlecat = $this->d->article_cat_list(0, 0, false);
 		$this->assign('lists',        $articlecat);
 		if(IS_AJAX){			
 			echo ejson(array('status'=>true,'data'=>$this->fetch()));return;

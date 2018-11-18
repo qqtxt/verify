@@ -1,0 +1,85 @@
+<include file="Index:header"/>
+<style>
+.pages{
+	width:100.5%;
+	text-align:right;
+	padding:10px 0;
+	clear:both;
+}
+.pages a, .pages .current{
+	font-size: 15px;
+	font-family: Arial;
+	margin:0 2px;
+}
+.pages a .pages .current{
+	border:1px solid #5FA632;
+	background:#fff;
+	padding:2px 6px;
+	text-decoration: none;
+}
+
+.pages .current,.pages a:hover{
+	background: #7AB63F;
+	color:#fff;
+}
+</style>
+<div class="container-fluid" style="padding:0">
+	<div class="row" style="margin:0">
+	  <div class="col-md-12 col-sm-12 col-lg-12" style="padding:0;">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="overflow:hidden;">{:L('share')} <a href="{:U('edit')}" class="btn btn-primary fancybox fancybox.iframe pull-right">{:L('add').L('qrcode')}</a></div>
+				<table class="table table-hover table-bordered table-striped">
+					<tr>
+						<th style="text-align:center" width="15%">{:L('share_name')}</th>
+						<th style="text-align:center" width="15%">{:L('share_account')}</th>
+						<th style="text-align:center" width="10%">{:L('scan_num')}</th>
+						<th style="text-align:center" width="15%">{:L('expire_seconds')}</th>
+						<th style="text-align:center" width="15%">{:L('qrcode_function')}</th>
+						<th style="text-align:center" width="10%">{:L('sort_order')}</th>
+						<th style="text-align:center" width="30%">{:L('handler')}</th>
+					</tr>
+					<foreach name="list" item="val" key="kkk">
+					<tr>
+						<td align="center">{$val.username}</td>
+						<td align="center"><?php if ($val['share_account']){
+							echo $val['share_account'];
+						}else{
+							echo 0;
+						} ?></td>
+						<td align="center">{$val.scan_num}</td>
+						<td align="center"><?php
+						if($val['expire_seconds']){
+							echo $val['expire_seconds'];
+						}else{
+							echo $lang['no_limit'];
+						}
+						?></td>
+						<td align="center">{$val.function}</td>
+						<td align="center">{$val.sort}</td>
+						<td align="center">
+							<a href="{:U('get', array('id'=>$val['id']))}" class="btn btn-primary fancybox fancybox.iframe getqr">{:L('qrcode_get')}</a>
+							<a href="javascript:if(confirm('{:L('confirm_delete')}'))window.location.href='{:U('Wechat_qrcode/del', array('id'=>$val['id'],'url'=>'lists'))}';" class="btn btn-primary">{:L('drop')}</a>
+						</td>
+					</tr>
+					</foreach>
+				</table>
+			</div>
+			{$page}
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".getqr").click(function(){
+		var url = $(this).attr("href");
+	    $.get(url, '', function(data){
+	        if(data.status <= 0 ){
+	        	$.fancybox.close();
+	        	alert(data.msg);
+	            return false;
+		    }
+		}, 'json');
+	});
+})
+</script>
+<include file="Index:footer"/>

@@ -57,10 +57,7 @@ class CacheRedis extends Cache {
      * @return mixed  无数据返回 false
      */
     public function get($name) {
-        N('cache_read',1);
-        $value = $this->handler->get($this->options['prefix'].$name);
-        $jsonData  = json_decode( $value, true );
-        return ($jsonData === NULL) ? $value : $jsonData;	//检测是否为JSON数据 true 返回JSON解析数组, false返回源数据
+		return ($content=$this->g($name)) ? unserialize($content) : false;
     }
     /**
      * 通用写入缓存
@@ -71,23 +68,7 @@ class CacheRedis extends Cache {
      * @return boolen
      */
     public function set($name, $value, $expire = null) {
-        N('cache_write',1);
-        $name   =   $this->options['prefix'].$name;
-        //对数组/对象数据进行缓存处理，保证数据完整性
-        $value  =  (is_object($value) || is_array($value)) ? json_encode($value) : $value;
-        $result = $this->handler->set($name, $value);
-		
-        if(is_null($expire)) {
-            $expire  =  $this->options['expire'];
-        }
-        if($result && is_int($expire)) {
-            $this->handler->setTimeout($name, $expire);
-        }		
-        if($result && $this->options['length']>0) {
-            // 记录缓存队列
-            $this->queue($name);
-        }
-        return $result;
+		return $this->s($name,serialize($value),$expire);
     }
 
     /**

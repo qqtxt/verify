@@ -1,0 +1,72 @@
+<include file="Public:header"/>
+<div class="main-div">
+	<form name="theForm" id="theForm" method="post" action="{:U(ACTION_NAME)}">
+		<table width="100%">
+			<tr>
+				<td class="label1">{$lang['wechat_name']}</td>
+				<td>
+					<input class="input01 w270" type="text" name="data[name]" value="{$data['name']}"/>&nbsp;<span class="notice-span">{$lang['wechat_help1']}</span></td>
+			</tr>
+			<tr>
+				<td class="label1">{$lang['wechat_id']}</td>
+				<td>
+					<input class="input01 w270" type="text" name="data[orgid]" value="{$data['orgid']}"></td>
+			</tr>
+			<tr>
+				<td class="label1">{$lang['appid']}</td>
+				<td>
+					<input type="text" name="data[appid]" class="input01 w270" value="{$data['appid']}"></td>
+			</tr>
+			<tr>
+				<td class="label1">{$lang['appsecret']}</td>
+				<td>
+					<input type="text" name="data[appsecret]" class="input01 w270" value="{$data['appsecret']}"></td>
+			</tr>
+			<tr>
+				<td class="label1">商户号</td>
+				<td>
+					<input type="text" name="data[mchid]" class="input01 w270" value="{$data['mchid']}"></td>
+			</tr>
+			<tr>
+				<td class="label1">支付密钥</td>
+				<td>
+					<input type="text" name="data[mchkey]" class="input01 w270" value="{$data['mchkey']}"></td>
+			</tr>
+			<tr>
+				<td class="label1">{$lang['token']}</td>
+				<td>
+					<input type="text" name="data[token]" class="input01 w270" value="{$data['token']}">&nbsp;<span class="notice-span">{$lang['wechat_help3']}</span></td>
+			</tr>
+			<tr>
+				<td class="label1">微信授权回调域名</td>
+				<td>
+					<input type="text" name="data[oauth_redirecturi]" class="input01 w270" value="{$data['oauth_redirecturi']}">&nbsp;<span class="notice-span">示例格式：http://shop.xx.com</span></td>
+			</tr>
+			<tr>
+				<td class="label1">{$lang['wechat_status']}</td>
+				<td>&nbsp;&nbsp;
+					<input type="radio" name="data[status]" value="1" <if condition="$data['status'] eq 1">checked</if> > {$lang['wechat_open']}&nbsp;&nbsp;
+					<input type="radio" name="data[status]" value="0" <if condition="$data['status'] eq 0">checked</if> > {$lang['wechat_close']}
+					</td>
+			</tr>
+			<if condition="$data['orgid']">
+			<tr>
+				<td class="label1">接口地址</td>
+				<td><span class="notice-span">__ROOT__/wechat?orgid={$data['orgid']}</span>
+					</td>
+			</tr>
+			</if>	
+			
+			<tr>
+				<td class="label1"></td>
+				<td>
+					<input type="hidden" name="id" value="{$data['id']}" />
+					<input type="hidden" name="data[type]" value="2">
+					<button class="btn btn-sm btn-primary" type="submit"> 提 交 </button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<include file="Public:footer"/>

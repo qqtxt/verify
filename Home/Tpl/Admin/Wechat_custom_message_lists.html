@@ -1,0 +1,31 @@
+<include file="Index:header"/>
+<div class="container-fluid" style="padding:0">
+  <div class="row" style="margin:0">
+	<div class="col-md-12 col-sm-12 col-lg-12" style="padding:0;">
+	<div class="panel panel-default">
+	  <div class="panel-heading">{$lang['custom_message_list']}  ---  {$nickname}</div>
+	  <table class="table table-hover table-bordered table-striped">
+		<tr>
+		<th class="text-center">{$lang['interactive_user']}</td>
+		  <th class="text-center">{$lang['message_content']}</td>
+		  <th class="text-center"  width="20%">{$lang['message_time']}</td>
+		</tr>
+		<foreach name="list" key="key" item="val">
+		<tr>
+			<if condition="$val['iswechat']">
+			  <td class="text-center">{$lang['official']}</td>
+			<else/>
+			  <td class="text-center">{$nickname}</td>
+			</if>
+			  <td class="text-center">{$val['msg']}</td>
+			  <td class="text-center">{$val.send_time|format_time}</td>
+		</tr>
+		</foreach>
+	  </table>
+	</div>
+	</form>
+	{$pager}
+  </div>
+ </div>
+</div>
+<include file="Index:footer"/>

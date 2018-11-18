@@ -92,7 +92,26 @@ class AdministrationAction extends BaseAction {
 			show_message('添加失败，只能存在一条为空记录！', array(),1);
 		}
 	}
-
+	/**
+	 * 系統提示信息
+	 *
+	 * @access      public
+	 * @param       string      msg_detail      消息內容
+	 * @param       int         msg_type        消息類型， 0消息，1錯誤，2詢問
+	 * @param       array       links           null不显示跳转 为跳转数组显示跳转链接   为空显示返回链接
+	 * @param       boolen      $auto_redirect  是否需要自動跳轉
+	 * @return      void
+	 */
+	protected function sys_msg($content, $type = 0, $links = array(), $auto_redirect = true)
+	{
+		$url=array();
+		if($links){
+			foreach($links as $k=>$v){
+				$url[$v['text']]=(stripos($v['href'],'http://')===0 || strpos($v['href'],'/')===0 ? '':__ROOT__.'/').$v['href'];
+			}			
+		}	
+		show_message($content, $url , $type,  $auto_redirect);
+	}
 	//为了兼容从ectouch的wechat
 	protected function message($msg, $url = '', $type = 'succeed', $waitSecond = 2){
 		show_message($msg, $url ? array('自动跳转'=>$url) :array(),0);

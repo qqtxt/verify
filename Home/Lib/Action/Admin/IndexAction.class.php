@@ -6,19 +6,17 @@ class IndexAction extends AdministrationAction{
 		$admin_id=session('admin_id');
 		//菜单
 		$menus=array(
-				array('label'=>'控制面板','children'=>array(
-						array('action'=>"Admin/Visit/lists",'label'=>'实时数据','priviledge'=>'Visit_lists'),
-						array('action'=>"Admin/Weixin/lists",'label'=>'微信列表','priviledge'=>'Weixin_lists'),
-						array('action'=>"Admin/Account/lists",'label'=>'帐户列表','priviledge'=>'Account_lists'),
-						array('action'=>"Admin/Domain/lists",'label'=>'域名列表','priviledge'=>'Domain_lists'),
-					),'ico'=>'glyphicon glyphicon-credit-card'
-				),
-				array('label'=>'统计报表','children'=>array(
-						array('action'=>"Admin/Visit_v/lists",'label'=>'实时访客','priviledge'=>'Visit_v_lists'),
-						array('action'=>"Admin/Visit_z/lists",'label'=>'实时转化','priviledge'=>'Visit_z_lists'),
-						array('action'=>"Admin/Visit_sd/lists",'label'=>'时段统计','priviledge'=>'Visit_sd_lists'),
-						array('action'=>"Admin/Visit_w/lists",'label'=>'时段统计(微信)','priviledge'=>'Visit_w_lists'),
-						array('action'=>"Admin/Weixin_fen/lists",'label'=>'报粉','priviledge'=>'Weixin_fen_lists'),
+				array('label'=>'公众平台管理','children'=>array(
+						array('action'=>"Admin/Wechat/edit",'label'=>'公众号设置','priviledge'=>'Wechat_edit'),
+						array('action'=>"Admin/Wechat_menu/lists",'label'=>'微信菜单','priviledge'=>'Wechat_menu_lists'),
+						array('action'=>"Admin/Wechat_subscribe/lists",'label'=>'粉丝管理','priviledge'=>'Wechat_subscribe_lists'),
+						array('action'=>"Admin/Wechat_reply/subscribe",'label'=>'自动回复','priviledge'=>'Wechat_reply_subscribe'),
+						array('action'=>"Admin/Wechat_media/article",'label'=>'素材管理','priviledge'=>'Wechat_media_article'),
+						array('action'=>"Admin/Wechat_template/message",'label'=>'模板信息','priviledge'=>'Wechat_template_message'),
+						array('action'=>"Admin/Wechat_qrcode/lists",'label'=>'扫码引荐','priviledge'=>'Wechat_qrcode_lists'),
+						array('action'=>"Admin/Wechat_extend/index",'label'=>'功能扩展','priviledge'=>'Wechat_extend'),
+						array('action'=>"Admin/Wechat_remind/lists",'label'=>'提醒设置','priviledge'=>'Wechat_remind_lists'),
+						array('action'=>"Admin/Wechat_customer/service",'label'=>'多客服设置','priviledge'=>'Wechat_customer_service'),
 					),'ico'=>'glyphicon glyphicon-credit-card'
 				),
 				array('label'=>'文章管理','children'=>array(

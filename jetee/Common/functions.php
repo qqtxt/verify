@@ -362,7 +362,7 @@ function initCache($name='',$options=null){
 function S($name,$value='',$options=null){
 	$cache=initCache($name,$options);
 	if(''=== $value){//获取缓存
-		return $cache->g($name);
+		return $cache->get($name);
 	}elseif(is_null($value)) {//删除缓存
 		return $cache->rm($name);
 	}else {//缓存数据
@@ -371,7 +371,7 @@ function S($name,$value='',$options=null){
 		}else{
 			$expire     =   is_int($options)?$options:NULL;
 		}
-		return $cache->s($name, $value, $expire);
+		return $cache->set($name, $value, $expire);
 	}
 }
 

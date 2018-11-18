@@ -1,9 +1,0 @@
-Thin[2018-11-18 17:43:07] 127.0.0.1 /?m=light&a=checkCloseReg&thin=200
-NOTIC: [2] call_user_func_array() expects parameter 1 to be a valid callback, class 'LightAction' does not have a method 'checkCloseReg' E:\w\work18\verify.net\jetee\Common\common.php 第 439 行.
-
-Thin[2018-11-18 18:48:17] 127.0.0.1 /?m=light&a=checkCloseReg&thin=200
-NOTIC: [2] call_user_func_array() expects parameter 1 to be a valid callback, class 'LightAction' does not have a method 'checkCloseReg' E:\w\work18\verify.net\jetee\Common\common.php 第 439 行.
-
-Thin[2018-11-18 18:48:32] 127.0.0.1 /?m=light&a=checkCloseReg&thin=200
-NOTIC: [2] call_user_func_array() expects parameter 1 to be a valid callback, class 'LightAction' does not have a method 'checkCloseReg' E:\w\work18\verify.net\jetee\Common\common.php 第 439 行.
-

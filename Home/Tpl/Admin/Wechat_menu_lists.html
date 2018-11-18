@@ -1,0 +1,47 @@
+<include file="Index:header"/>
+
+<div class="container-fluid" style="padding:0">
+  <div class="row" style="margin:0">
+    <div class="col-md-12 col-sm-12 col-lg-12" style="padding:0;">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="overflow:hidden;">{$lang['menu']} <a href="{:U('edit')}" class="btn btn-primary fancybox fancybox.iframe pull-right">{$lang['menu_add']}</a></div>
+        <div class="panel-body">
+        <form action="{:U('menu')}" method="post" class="form-horizontal" role="form">
+        <table class="table table-hover ectouch-table">
+            <tr class="active">
+              <th class="text-center">{$lang['menu_name']}</th>
+              <th class="text-center">{$lang['menu_keyword']}</th>
+              <th class="text-center">{$lang['menu_url']}</th>
+              <th class="text-center">{$lang['sort_order']}</th>
+              <th class="text-center">{$lang['handler']}</th>
+            </tr>
+            <foreach name="list" key="key" item="val">
+				<tr>
+				  <td>{$val['name']}</td>
+				  <td class="text-center">{$val['key']}</td>
+				  <td class="text-center">{$val['url']}</td>
+				  <td class="text-center">{$val['sort']}</td>
+				  <td class="text-center"><a href="{:U('edit', array('id'=>$val['id']))}" class="btn btn-primary fancybox fancybox.iframe">{$lang['edit']}</a>&nbsp;&nbsp;<a href="javascript:if(confirm('{$lang['confirm_delete']}')) window.location.href='{:U('del', array('id'=>$val['id']))}';" class="btn btn-default">{$lang['drop']}</a></td>
+				</tr>
+				<foreach name="val['sub_button']" key="k" item="v" >
+				<tr>
+				  <td>&nbsp;|---- &nbsp;&nbsp;{$v['name']}</td>
+				  <td class="text-center">{$v['key']}</td>
+				  <td class="text-center">{$v['url']}</td>
+				  <td class="text-center">{$v['sort']}</td>
+				  <td class="text-center"><a href="{:U('edit', array('id'=>$v['id']))}" class="btn btn-primary fancybox fancybox.iframe">{$lang['edit']}</a>&nbsp;&nbsp;<a href="javascript:if(confirm('{$lang['confirm_delete']}')) window.location.href='{:U('del', array('id'=>$v['id']))}';" class="btn btn-default">{$lang['drop']}</a></td>
+				</tr>
+				 </foreach>
+             </foreach>
+            <tr>
+              <td colspan="5" class="text-center"><a href="{:U('creat')}" class="btn btn-primary">{$lang['menu_create']}</a></td>
+            </tr>
+        </table>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<include file="Index:footer"/>
