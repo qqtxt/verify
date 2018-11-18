@@ -1,0 +1,14 @@
+<div class="css3-spinner" id="css3-spinner">
+	<div class="css3-spinner-bounce1"></div>
+	<div class="css3-spinner-bounce2"></div>
+	<div class="css3-spinner-bounce3"></div>
+</div>
+<script>
+if(typeof(layui)!='undefined')
+layui.use('layer', function(layer){setTimeout(function(){
+	layer.tips(' ', '#css3-spinner', {
+		tips: [1, '#3595CC'],
+		time: 1
+	});
+},500);});
+</script>

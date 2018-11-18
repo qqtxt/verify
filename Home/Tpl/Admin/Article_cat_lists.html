@@ -1,0 +1,109 @@
+<if condition="$full_page">
+<include file="Index:header"/>
+<form method="post" action="" name="listForm" id="listForm">
+<div class="list-div ibox-content" id="listDiv">
+</if>
+
+<table class="table table-striped table-hover" id='list-table'>
+<thead>
+  <tr>
+	<th>分类ID</th>
+    <th>文章分类名称</th>
+    <th>描述</th>
+    <th>排序</th>
+    <th>操作</th>
+  </tr>
+</thead>
+<tbody>
+  <foreach name='lists' item='cat'>
+  <tr align="left" class="{$cat.level}" id="{$cat.level}_{$cat.cat_id}">
+	<td align="center">{$cat.cat_id}</td>
+    <td class="nowrap" valign="top" >
+      <img src="Public/admin/images/menu_minus.gif" id="icon_{$cat.level}_{$cat.cat_id}" width="9" height="9" border="0" style="margin-left:{$cat.level}em" onclick="rowClicked(this)" />&nbsp;<span onclick="javascript:listTable.edit(this, 'edit/act/cat_name', {$cat.id})">{$cat.cat_name|default='N/A'}</span>
+    </td>
+    <td valign="top"><span onclick="javascript:listTable.edit(this, 'edit/act/cat_desc', {$cat.id})">{$cat.cat_desc|default='N/A'}</span></td>
+    <td><span onclick="listTable.edit(this, 'edit/act/sort_order', {$cat.cat_id})">{$cat.sort_order}</span></td>
+    <td align="center">
+      <a href="{$cat.url}" title="查看" ><img src="Public/admin/images/icon_view.gif" class="je_icon"/></a>&nbsp;
+      <a href="javascript:;" onclick="jetee.moveTo({$cat.id})" title="转移分类"><img src="Public/admin/images/icon_edit.gif" class="je_icon"/></a>&nbsp;
+      <a href="javascript:;" onclick="listTable.remove({$cat.id}, '您确定要删除？')" title="删除"><img src="Public/admin/images/icon_drop.gif" class="je_icon"/></a></td>
+  </tr>
+  </foreach>
+  <empty name="lists"><tr><td class="no-records" colspan="20">没有记录</td></tr></empty>
+</tbody>
+</table>
+
+<if condition="$full_page">
+</div>
+</form>
+<script>
+//类 转移分类
+jetee.moveTo=function($id){
+	j.minWin('Admin/{:trim(MODULE_NAME)}/edit/act/moveTo?id='+$id,'转移分类',['500px', '380px']);
+}
+</script>
+<literal>
+<script type="text/javascript">
+<!--
+var imgPlus = new Image();
+imgPlus.src = "Public/admin/images/menu_plus.gif";
+
+/**
+ * 折叠分类列表
+ */
+function rowClicked(obj)
+{   
+  img = obj;// 当前图像  
+  obj = obj.parentNode.parentNode;// 取得上二级tr>td>img对像  
+  var tbl = document.getElementById("list-table");// 整个分类列表表格  
+  var lvl = parseInt(obj.className);// 当前分类级别 
+  var fnd = false; // 是否找到元素
+  var sub_display = img.src.indexOf('menu_minus.gif') > 0 ? 'none' : document.all ? 'block' : 'table-row' ;
+  for (i = 0; i < tbl.rows.length; i++)// 遍历所有的分类
+  {
+      var row = tbl.rows[i];
+      if (row == obj)
+      {
+          // 找到当前行
+          fnd = true;
+          //document.getElementById('result').innerHTML += 'Find row at ' + i +"<br/>";
+      }
+      else
+      {
+          if (fnd == true)
+          {
+              var cur = parseInt(row.className);
+              var icon = 'icon_' + row.id;
+              if (cur > lvl)
+              {
+                  row.style.display = sub_display;
+                  if (sub_display != 'none')
+                  {
+                      var iconimg = document.getElementById(icon);
+                      iconimg.src = iconimg.src.replace('plus.gif', 'minus.gif');
+                  }
+              }
+              else
+              {
+                  fnd = false;
+                  break;
+              }
+          }
+      }
+  }
+
+  for (i = 0; i < obj.cells[1].childNodes.length; i++)
+  {
+      var imgObj = obj.cells[1].childNodes[i];
+      if (imgObj.tagName == "IMG" && imgObj.src != 'Public/admin/images/menu_arrow.gif')
+      {
+          imgObj.src = (imgObj.src == imgPlus.src) ? 'Public/admin/images/menu_minus.gif' : imgPlus.src;
+      }
+  }
+}
+//-->
+</script>
+</literal>
+<include file="Index:footer"/>
+</if>
+

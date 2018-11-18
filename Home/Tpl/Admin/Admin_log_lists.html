@@ -1,0 +1,89 @@
+<if condition="$full_page">
+<include file="Index:header"/>
+<div class="form-div">
+  <form action="javascript:search()" name="searchForm"  class="inline">
+    <i class="fa fa-search"></i>
+	管理员：<select name="admin_id" id="admin_id" class="select">
+      <option value="0">全部</option>
+	  <?php	$admin_list=db('admin')->getField('admin_id,username');
+		foreach($admin_list as $k=>$v){
+			echo "<option value='$k'>$v</option>";
+		} ?>
+    </select>
+    关键字： <input class="keyword" type="text" name="keyword" id="keyword" /> 
+    <input type="submit" value="搜索" class="button" />  ip地址或日志内容
+  </form>
+	<form action="Admin/{$Think.const.MODULE_NAME}/del" method="get" class="inline">
+	清除日志
+	<select name="log_date" class="select">
+		<option value="0">选择清除的日期...</option>
+		<option value="1">一周之前</option>
+		<option value="2">一个月之前</option>
+		<option value="3">三个月之前</option>
+		<option value="4">半年之前</option>
+		<option value="5">一年之前</option>
+	</select>
+	<input name="drop_type_date" value="清除" class="button" type="submit">
+	</form> 
+</div>
+<script type="text/javascript">
+function search(){
+	listTable.filter.admin_id =   $('#admin_id').val(); 
+	listTable.filter.keyword =   $.trim($('#keyword').val()); 
+	listTable.filter.page = 1;
+	listTable.loadList();
+}
+</script>
+
+<form method="post" action="" name="listForm" id="listForm">
+<div class="list-div ibox-content" id="listDiv">
+</if>
+
+<table class="table table-striped table-hover" id='list-table'>
+<thead>
+  <tr>
+	<th width="6%"><input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox"><a href="javascript:listTable.sort('l.log_id');">ID</a>{$sort_log_id}</th>
+	<th><a href="javascript:listTable.sort('l.admin_id');">管理员</a>{$sort_admin_id}</th>
+	<th><a href="javascript:listTable.sort('l.log_time');">操作时间</a>{$sort_log_time}</th>
+	<th><a href="javascript:listTable.sort('l.ip_address');">操作IP</a>{$sort_ip_address}</th>
+	<th><a href="javascript:listTable.sort('l.log_info');">操作内容</a>{$sort_log_info}</th>
+ 	<th>操作</th>
+ </tr>
+</thead>
+<tbody>
+  <foreach name='lists' item='list'>
+  <tr>
+	<td class="first-cell"><input name="checkboxes[]" type="checkbox" value="{$list.log_id}" /> {$list.log_id}</td>
+    <td>{$list.username}</td>
+    <td>{$list.log_time|format_time}</td>
+    <td>{$list.ip_address}</td>
+    <td title="{$list.log_info}">{$list.log_info|}</td>
+    <td align="center">     
+      <a href="javascript:;" onclick="listTable.remove({$list.log_id}, '您确定要删除？')" title="删除"><img src="Public/admin/images/icon_drop.gif" class="je_icon"></a></td>
+  </tr>
+  </foreach>
+  <empty name="lists"><tr><td class="no-records" colspan="20">没有记录</td></tr></empty>
+	<tr>
+		<td align="right" nowrap="true" colspan="20">
+		<include file="Index:page"/>
+		</td>
+	</tr>
+</tbody>
+</table>
+<if condition="$full_page">
+</div>
+<div class="mt_5 batch">
+	<input type="submit" id="btnSubmit1" value="批量删除" disabled="true" class="btn btn-primary btn-xs"  onclick="$('#listForm').attr('action','Admin/{:trim(MODULE_NAME)}/del'); return confirm('您确定要批量删除？');"/>
+</div>
+</form>
+
+<script type="text/javascript">
+	listTable.recordCount = {$record_count};
+	listTable.pageCount = {$page_count};
+	<foreach name='filter' item='item' key='key'>
+	listTable.filter.{$key} = '{$item}';
+	</foreach>
+</script>
+<include file="Index:footer"/>
+</if>
+

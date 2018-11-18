@@ -1,0 +1,14 @@
+	<div id="turn-page">
+		<if condition="$record_count lt (40000000000-1)">总计 <span id="totalRecords">{$record_count}</span>个记录分为 <span id="totalPages">{$page_count}</span>页</if>
+		当前第 <span id="pageCurrent">{$filter.page}</span>
+		页，每页 <input type='text' size='3' id='pageSize' value="{$filter.page_size}" onkeypress="return listTable.changePageSize(event)" />
+		<span id="page-link">
+			<a href="javascript:listTable.gotoPageFirst()">第一页</a>&nbsp;
+			<a href="javascript:listTable.gotoPagePrev()">上一页</a>&nbsp;
+			<a href="javascript:listTable.gotoPageNext()">下一页</a>&nbsp; 
+			<a href="javascript:listTable.gotoPageLast()">最后一页</a>
+			<select id="gotoPage" onchange="listTable.gotoPage(this.value)">
+				{:smarty_create_pages($page_count,$filter['page'])}
+			</select>
+		</span>
+	</div>

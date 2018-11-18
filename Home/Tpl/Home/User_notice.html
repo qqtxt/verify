@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html><!--<![endif]-->
+<head>
+	<meta charset=UTF-8 />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
+	<meta name=keywords content="{$keywords}"/>
+	<meta name=Description content="{$description}"/>
+	<link rel="shortcut icon" href="favicon.ico">
+	<base href="__ROOT__/"/>
+	<title>{$title}</title>
+	{:css_creat_cdn('layui,bootstrap,font-awesome,animate')}
+    <link href="Public/h+/css/style.css" rel="stylesheet">
+    <link href="Public/css/user.css" rel="stylesheet">
+	<include file="User:header"/>
+</head>
+<body class="gray-bg">
+	
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>商家公告</h5>
+					</div>
+					<div class="ibox-content">
+<table class="table">
+	<thead>
+		<tr>
+			<th>标题</th>
+			<th class="hidden-xs">发布时间</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+			foreach($rows as $k=>$v){
+				echo '<tr class="'.($k%3==0? 'success' : ($k%3==1? 'warning': 'danger') ).'">
+					<td><a href="'.U('user/show_notice', array('notice_id'=>$v['notice_id'])).'" target="_self">'.$v['title'].'</a></td>
+					<td class="hidden-xs">'.format_time($v['add_time']).'</td>
+					</tr>';
+			}
+			if(empty($rows)) echo '<tr><td colspan="20" class="text-center">暂无</td></tr>';
+		?>		
+	</tbody>
+
+	<tr>
+		<td colspan="20" style="border:0"><div class="pull-right">{$page}</div></td>
+	</tr>
+
+</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<include file="User:footer"/>
+{:js_creat_cdn('jquery,bootstrap,layui')}
+<script src="__ROOT__/Public/user.js"></script>
+
+
+</body></html>

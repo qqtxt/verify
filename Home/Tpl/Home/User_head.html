@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
+<head>
+	<meta charset=UTF-8 />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
+	<meta name=keywords content="{$keywords}"/>
+	<meta name=Description content="{$description}"/>
+	<base href="__ROOT__/"/>
+	<title>上传头像-{$title}</title>
+	{:css_creat_cdn('layui,bootstrap,font-awesome,animate')}	
+    <link href="Public/h+/css/style.css" rel="stylesheet">
+    <link href="Public/css/user.css" rel="stylesheet">
+	<include file="User:header"/>
+	
+<style>
+.container {
+	width: 100%;
+	position: relative;
+	font-family: 微软雅黑;
+	font-size: 12px;
+}
+.container p {
+	line-height: 12px;
+	line-height: 0px;
+	height: 0px;
+	margin: 10px;
+	color: #bbb
+}
+.action {
+	width: 100%;
+	height: 30px;
+	margin: 10px 0;
+}
+.cropped {
+	position: absolute;
+	right: -230px;
+	top: 0;
+	width: 200px;
+	border: 1px #ddd solid;
+	height: 460px;
+	padding: 4px;
+	box-shadow: 0px 0px 12px #ddd;
+	text-align: center;
+}
+.imageBox {
+	position: relative;
+	height: 400px;
+	width: 100%;
+	border: 1px solid #aaa;
+	background: #fff;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	cursor: move;
+	box-shadow: 4px 4px 12px #B0B0B0; 
+}
+.imageBox .thumbBox {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 217px;
+	height: 217px;
+	margin-top: -100px;
+	margin-left: -100px;
+	box-sizing: border-box;
+	border: 1px solid rgb(102, 102, 102);
+	box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+	background: none repeat scroll 0% 0% transparent;
+}
+.imageBox .spinner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+	line-height: 400px;
+	background: rgba(0,0,0,0.7);
+}
+.Btnsty_peyton{ float: right;
+   width: 66px;
+  display: inline-block;
+  margin-bottom: 10px;
+  height: 57px;
+  line-height: 57px;
+  font-size: 20px;
+  color: #FFFFFF;
+  margin:0px 2px;
+  background-color: #f38e81;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px #B0B0B0;
+  border: 0px #fff solid;}
+/*选择文件上传*/
+.new-contentarea {
+	width: 80px;
+	overflow:hidden;
+	margin: 0 auto;
+	position:relative;float:left;
+}
+.new-contentarea label {
+	width:100%;
+	height:100%;
+	display:block;
+}
+.new-contentarea input[type=file] {
+	width:188px;
+	height:60px;
+	background:#333;
+	margin: 0 auto;
+	position:absolute;
+	right:50%;
+	margin-right:-94px;
+	top:0;
+	right/*\**/:0px\9;
+	margin-right/*\**/:0px\9;
+	width/*\**/:10px\9;
+	opacity:0;
+	filter:alpha(opacity=0);
+	z-index:2;
+}
+a.upload-img{
+	width:80px;
+	display: inline-block;
+	margin-bottom: 10px;
+	height:57px;
+	line-height: 57px;
+	font-size: 20px;
+	color: #FFFFFF;
+	background-color: #f38e81;
+	border-radius: 3px;
+	text-decoration:none;
+	cursor:pointer;
+	border: 0px #fff solid;
+	box-shadow: 0px 0px 5px #B0B0B0;
+}
+a.upload-img:hover{
+	background-color: #ec7e70;
+}
+
+.tc{text-align:center;}
+.reg_wrap{border-bottom: 1px solid #ccc;margin-bottom:5px;}	
+.reg_wrap dt{line-height: 2rem;font-family: "Microsoft Yahei";}	
+.thumb{text-align:center;}
+</style>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>上传头像</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+<div class="container">
+  <div class="thumb"></div>
+  <div class="imageBox">
+    <div class="thumbBox"></div>
+    <div class="spinner" style="display: none">Loading...</div>
+  </div>
+  <div class="action">
+    <div class="new-contentarea tc"> <a href="javascript:void(0)" class="upload-img">
+      <label for="upload-file">上传</label>
+      </a>
+      <input type="file" class="" name="upload-file" id="upload-file" />
+    </div>
+    <input type="button" id="btnCrop"  class="Btnsty_peyton" value="裁切">
+    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
+    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
+  </div>
+</div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	
+	
+<include file="User:footer"/>
+{:js_creat_cdn('jquery,bootstrap,layui')}
+<script src="__ROOT__/Public/cropbox.js"></script>
+<script src="__ROOT__/Public/user.js"></script>
+<script type="text/javascript">
+var options = {
+	thumbBox: '.thumbBox',
+	spinner: '.spinner',
+	imgSrc: '__ROOT__/Public/images/avatar.png',
+    imageBox: document.querySelector('.imageBox')
+};
+var cropper = cropbox(options);
+document.querySelector('#upload-file').onchange = function(){
+    var reader = new FileReader();
+	reader.onload = function(e) {
+		options.imgSrc = e.target.result;
+		cropper = cropbox(options);
+	};
+	reader.readAsDataURL(this.files[0]);
+}
+
+document.querySelector('#btnCrop').onclick = function(){
+	var img = cropper.getDataURL();
+	document.querySelector('.thumb').innerHTML = '';
+	document.querySelector('.thumb').innerHTML = '<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;box-shadow:0px 0px 12px #7E7E7E;">';
+	var str=img.split("base64,")[1];
+	$.post(j.root+"?m=Pc&a=ajaxUploadHead&thin=200",{imgBase64:img},function(data){
+		j.layer_msg(data.data);
+		if(data.status){
+			setTimeout(function(){top.location=top.location;},800);
+		}
+	},'json')
+};
+
+document.querySelector('#btnZoomIn').onclick = function() {
+    cropper.zoomIn();
+}
+
+document.querySelector('#btnZoomOut').onclick = function() {
+    cropper.zoomOut();
+}
+</script>
+</body></html>

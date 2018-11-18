@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta name="viewport"content="initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no,minimal-ui"/>
+	<meta name="Keywords" content="{$keywords}" />
+	<meta name="Description" content="{$description}" />
+	<title>登陆</title>
+	<meta http-equiv="refresh" content="{$message.delay};URL={$message.back_url}" />
+<style>
+body{border:0;padding:0;margin:0;}
+a{text-decoration: none;color: #069;}
+a:hover{color: #F60;}
+.clear {clear: both;}
+#message {text-align:center;font-family: "微软雅黑", Verdana, sans-serif, "宋体";margin-right: auto;	margin-left: auto;margin-top: 80px;	line-height: 1.8;font-weight: bold;}
+.wait{color: #096;}
+.error {color: #C00;font-size: 24px;}
+#public_service {margin-top: 150px;}
+#error_head {height: 70px;background-color: #09C;}
+img {margin-top: 10px;margin-bottom: 10px;}
+#error_head .title{line-height: 70px;height: 70px;}
+#error_head .title .err {font-family: "微软雅黑", Verdana, sans-serif, "宋体";font-weight: bold;color: #FFF;font-size: 36px;}
+#error_head .title .home {margin-left: 30px;font-family: "微软雅黑", Verdana, sans-serif, "宋体";font-size: 14px;}
+#error_head .title .home a {color: #000;}
+#error_head .title .home a:hover {color: #FFF;}
+#message_txt .tip{margin-top: 20px;}
+</style>
+</head><body><div id="error_head"><div class="title"><span class="err">系统信息</span><span class="home"><a href="__ROOT__">回到首页</a></span></div></div><div id="message"><div id="message_txt"><div class="msg"><span class="error">{$message.content}</span></div>
+
+<div class="tip"> 系统将在 <span class="wait">{$message.delay}</span> 秒后自动跳转，如果您的浏览器没有跳转请点击 <a href="{$message.back_url}">这里</a></div>
+<div class="tip">
+	<p style="line-height:20px;"><a href="{$message.back_url}">《{$message.url_info}</a></p>
+</div>
+</div><div class="clear"></div><!--div id="public_service"><script type="text/javascript" src="http://www.qq.com/404/search_children.js?edition=small" charset="utf-8"></script></div --></div></body></html>

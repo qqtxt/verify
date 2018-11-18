@@ -1,0 +1,60 @@
+<include file="Index:header"/>
+<table class="table table-striped table-hover">
+  <tr>
+    <th colspan="4" class="group-title">{:L('system_info')}
+		<div class="pull-right">
+			<a class="btn btn-primary btn-xs" href="/?sync=start" target="_blank" onclick="j.reload();return true;">开启同步数据</a>
+			<a class="btn btn-primary btn-xs" href="/?sync=stop">停止同步数据</a>
+		</div>
+	</th>
+  </tr>
+  <tr>
+    <td width="20%">版本:</td>
+    <td width="30%">{:C('VER')}</td>
+    <td>最后同步数据时间</td>
+    <td>{:(($a=file_get_contents(APP_PATH.'Runtime/Data/cron_check.txt'))?date('Y-m-d H:i:s',$a):'暂无')}</td>
+  </tr>
+  <tr>
+    <td>{:L('php_version')}</td>
+    <td>{$sys_info.php_ver}</td>
+    <td>{:L('mysql_version')}</td>
+    <td>{$sys_info.mysql_ver}</td>
+  </tr>
+  <tr>
+    <td>{:L('safe_mode')}</td>
+    <td>{$sys_info.safe_mode}</td>
+    <td width="20%">{:L('web_server')}</td>
+    <td width="30%">{$sys_info.os} ({$sys_info.ip}) {$sys_info.web_server}</td>
+  </tr>
+  <tr>
+    <td>{:L('socket')}</td>
+    <td>{$sys_info.socket}</td>
+    <td>{:L('timezone')}</td>
+    <td>{$sys_info.timezone}</td>
+  </tr>
+  <tr>
+    <td>{:L('gd_version')}</td>
+    <td>{$sys_info.gd}</td>
+    <td>{:L('zlib')}</td>
+    <td>{$sys_info.zlib}</td>
+  </tr>
+  <tr>
+    <td>{:L('curl')}</td>
+    <td>{$sys_info.curl}</td>
+    <td>{:L('max_filesize')}</td>
+    <td>{$sys_info.max_filesize}</td>
+  </tr>
+  <tr>
+    <td>系统时间</td>
+    <td>{:date('Y-m-d H:i:s')}</td>
+    <td>{:L('short_tag')}</td>
+    <td>{$sys_info.short_tag}</td>
+  </tr>
+  <tr>
+    <td>charset</td>
+    <td>UTF-8</td>
+    <td>PHP信息（phpinfo）</td>
+    <td><a target="_blank" href="Admin/Index/phpinfo">PHPINFO</a></td>
+  </tr>
+</table>
+<include file="Index:footer"/>

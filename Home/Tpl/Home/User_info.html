@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
+<head>
+	<meta charset=UTF-8 />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
+	<meta name=keywords content="{$keywords}"/>
+	<meta name=Description content="{$description}"/>
+	<base href="__ROOT__/"/>
+	<title>{$title}</title>
+	{:css_creat_cdn('layui,bootstrap,font-awesome,animate')}
+    <link href="Public/h+/css/style.css" rel="stylesheet">
+    <link href="Public/css/user.css" rel="stylesheet">
+	<include file="User:header"/>
+</head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>我的资料</h5>
+						<div class="ibox-tools">
+							<a class="collapse-link">
+								<i class="fa fa-chevron-up"></i>
+							</a>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<form method="get" class="form-horizontal layui-form" onsubmit="j.doUserInfo(this);return false;">
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><h3>人气云ID</h3></label>
+								<label class="col-sm-10 col-xs-9 control-label"><h3 class="text-navy pull-left">{:user('uid')}</h3></label>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><h3>帐号</h3></label>
+								<label class="col-sm-10 col-xs-9 control-label"><h3 class="text-navy pull-left">{:user('phone')}</h3></label>
+							</div>
+							<div class="hr-line-dashed"></div>							
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><h3>QQ</h3></label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="qq" placeholder="请输入QQ号码" maxlength="13" required oninvalid="setCustomValidity('请输入QQ号码')" oninput="setCustomValidity('')" pattern="^[1-9][0-9]{4,12}$" value="{:user('qq')}">
+								</div>
+							</div>
+							<div class="hr-line-dashed"></div>							
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><h3>微信</h3></label>
+								<div class="col-sm-10">
+									<input type="text" name="weixin" class="form-control" placeholder="请输入微信帐号"  oninvalid="setCustomValidity('请输入微信帐号,不能为手机及邮箱帐号')" oninput="setCustomValidity('')" required pattern="^[a-zA-Z]+[a-zA-Z0-9_\-]*$" maxlength="20" value="{:user('weixin')}"/>
+									<span class="help-block m-b-none">请输入微信帐号,不能为手机及邮箱帐号</span>
+								</div>
+							</div>
+							<div class="hr-line-dashed"></div>							
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><h3>性别</h3></label>
+								<div class="col-sm-10">
+									<foreach name="L('sex')" key="k" item="v">
+									<input type="radio" name="sex" {:trim(user('sex')==$k ? 'checked': '')} value="{$k}" title="{$v}"/>
+									</foreach>
+								</div>
+							</div>
+							<div class="hr-line-dashed"></div>							
+							 <div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+								<button class="btn btn-lg btn-primary btn-block" type="submit">保存</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>修改密码</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="get" class="form-horizontal" onsubmit="j.doEditPassword(this);return false;">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><h3>原密码</h3></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="old_pass" placeholder="请填写原密码" maxlength="50" required oninvalid="setCustomValidity('请填写原密码')" oninput="setCustomValidity('')" pattern=".{1,50}" title="请填写原密码" value="">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>							
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><h3>新密码</h3></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="password" placeholder="请填写新密码" maxlength="50" required oninvalid="setCustomValidity('请填写新密码')" oninput="setCustomValidity('')" pattern=".{1,50}" title="请填写新密码" value="">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                             <div class="form-group">
+                                <div class="col-sm-10 col-sm-offset-2">
+								<button class="btn btn-lg btn-primary btn-block" type="submit">保存</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	
+	
+<include file="User:footer"/>
+{:js_creat_cdn('jquery,bootstrap,layui')}
+<!-- <script src="__ROOT__/Public/fenhong/js/content.min.js"></script> -->
+<!-- <script src="__ROOT__/Public/fenhong/js/plugins/iCheck/icheck.min.js"></script> -->
+<script src="__ROOT__/Public/user.js"></script>
+<script>
+layui.use('form', function(form){
+});
+</script>
+</body></html>

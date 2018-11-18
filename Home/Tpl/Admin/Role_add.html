@@ -1,0 +1,96 @@
+<include file="Index:header"/>
+<form method="POST" action="Admin/Role/{$Think.const.action_name}" name="theFrom">
+<div class="list-div ibox-content" id="listDiv">
+<table class="table table-striped" >
+  <tr>
+    <td class="label1">角色名：</td>
+    <td>
+      <input class="input01" type="text" name="role_name" maxlength="20" value="{$role.role_name|escape}" size="34"/> <span class="red">*</span></td>
+  </tr>
+  <tr>
+    <td class="label1">角色描述：</td>
+    <td>
+    <textarea class="textarea01" name="role_describe" cols="50" rows="6">{$role.role_describe|escape}</textarea> <span class="red">*</span></td>
+  </tr>
+</table>
+<table class="table table-striped" id='list-table'>
+<foreach name='priv_arr' item='priv'>
+ <tr>
+  <td width="18%" valign="top">
+    <input name="chkGroup" type="checkbox" value="checkbox" onclick="check('{$priv.priv_list}',this);">{$priv['comment']}
+  </td>
+  <td>
+    <foreach name='priv.priv' item='list' key='priv_list'>
+    <div style="width:200px;float:left;">
+    <label for="{$priv_list}"><input type="checkbox" name="action_code[]" value="{$priv_list}" id="{$priv_list}" <if condition="$list.cando eq 1"> checked="true" </if> onclick="checkrelevance('{$list.relevance}', '{$priv_list}')" title="{$list.relevance}"/>
+    {$list['comment']}</label>
+    </div>
+    </foreach>
+</td></tr>
+</foreach>
+  <tr>
+    <td align="center" colspan="2" >
+      <input type="checkbox" name="checkall" value="checkbox" onclick="checkAll(this.form, this);"/>  全选
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="submit"   name="Submit"   value="保存" class="btn btn-primary" />&nbsp;&nbsp;&nbsp;
+      <input type="reset" value="重置" class="btn btn-primary" />
+      <input type="hidden"   name="id"    value="{$role_id}" />
+      <input type="hidden"   name="act"   value="{$form_act}" />
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+
+<literal>
+<script>
+function checkAll(frm, checkbox)
+{
+  for (i = 0; i < frm.elements.length; i++)
+  {
+    if (frm.elements[i].name == 'action_code[]' || frm.elements[i].name == 'chkGroup')
+    {
+      frm.elements[i].checked = checkbox.checked;
+    }
+  }
+}
+
+function check(list, obj)
+{
+  var frm = obj.form;
+
+    for (i = 0; i < frm.elements.length; i++)
+    {
+      if (frm.elements[i].name == "action_code[]")
+      {
+          var regx = new RegExp(frm.elements[i].value + "(?!_)", "i");
+
+          if (list.search(regx) > -1) {frm.elements[i].checked = obj.checked;}
+      }
+    }
+}
+
+function checkrelevance(relevance, priv_list)
+{
+  if(document.getElementById(priv_list).checked && relevance != '')
+  {
+    document.getElementById(relevance).checked=true;
+  }
+  else
+  {
+    var ts=document.getElementsByTagName("input");
+    
+    for (var i=0; i<ts.length;i++)
+    {
+      var text=ts[i].getAttribute("title");
+
+      if( text == priv_list) 
+      {
+        document.getElementById(ts[i].value).checked = false;
+      }
+    }
+  }
+}
+</script>
+</literal>
+<include file="Index:footer"/>

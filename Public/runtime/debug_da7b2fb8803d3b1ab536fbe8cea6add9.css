@@ -1,0 +1,127 @@
+html {font-size:62.5%; }
+ul{padding:0;}
+ul,li{list-style-type:none;}
+hr{min-width:1200px;}
+
+a:hover,a:focus {color:green;text-decoration:none;}
+.j_white_a a{color:white;}
+
+/*重置*/
+.thumbnail img{border-radius:0.5rem;}
+body{position:relative;font-size:14px;}
+
+/*边距*/
+.mt_5{ margin-top:5px;} .mt_10{margin-top:10px;} .mt_20{margin-top:20px;} .mb_15{margin-bottom:15px;}.ml_60{margin-left:60px;}
+.j_lh50{line-height:50px;}
+.p_relative{position:relative;}	
+.p_fixed{position:fixed;}	
+/*背景颜色*/
+.bc_fff{background-color:#fff}.bc_ccc{background-color:#ccc;}.bc_eee{background-color:#eee;}.bc_d9534f{background-color:#d9534f;}
+/*颜色*/
+.c_f00{color:#F00;}.c_080 {color:#080}.c_ccc{color:#ccc;} .c_333,.c_333 a{color:#333;} .c_666{color:#666;} .c_999{color:#999!important;}.c_fff{color:#fff!important;}
+/*字体*/
+.ff_my{font-family:"Microsoft YaHei";}
+/*宽*/
+.j_w96{width:96%;margin-left:auto; margin-right:auto;}
+
+
+/*公用*/
+.j_pr{position:relative;}
+.j_container{width:1200px;padding:0;}
+.j_lifl li{float:left;}
+.j_dib{display:inline-block;}
+.modal-footer{border-top:0;}
+
+.j_down{display:inline-block;font-size:12px;color:red;margin-left:20px;}
+
+/*顶部*/
+.j_logo{position:absolute;top:0;}
+.j_login .dropdown{display:inline-block;}
+
+	
+#user{line-height:50px;}	
+.j_avatar{width:35px;height:35px;}
+.j_avatar1{width:60px;height:60px;}
+
+/*菜单*/
+.j_main_nav_wrap{height:51px;line-height:50px;}
+nav.j_main a {padding:0 15px;font-size:16px;}
+nav.j_main a:hover,nav.j_main a:focus {color:green;}
+.j_btn_publish{height:40px;line-height:40px;display:inline-block;padding:0 15px;border-radius:20px;color:#fff;font-size:18px;background:#178fe6;}
+
+
+	
+
+/*页脚*/
+.j_footer{padding:20px 0;min-width:1200px;background:#474e5d}
+.footer-wrap{overflow:hidden;margin:0 auto;width:1200px}
+.copy_text{color:#b0b0b0;text-align:center;font:14px "Microsoft Yahei";line-height:24px}
+.copy_text a{color:#b0b0b0}
+
+/*纯css3加载动画，特效，加载时缓冲圈圈*/
+.css3-spinner {display:none;position:fixed;width:100%;height:100%;top:0;left:0;z-index:1000;text-align:center;#background-color:#FFF;-webkit-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;}
+.css3-spinner > div{position:absolute;top:50%;left:50%;margin-top:-9px;margin-left:13px;width:18px;height:18px;background-color:#f33;border-radius:100%;display:inline-block;-webkit-animation:bouncedelay 1.4s infinite ease-in-out;animation:bouncedelay 1.4s infinite ease-in-out;-webkit-animation-fill-mode:both;animation-fill-mode:both;}
+.css3-spinner .css3-spinner-bounce1 {margin-left:-31px;-webkit-animation-delay:-0.32s;animation-delay:-0.32s;}
+.css3-spinner .css3-spinner-bounce2 {margin-left:-9px;-webkit-animation-delay:-0.16s;animation-delay:-0.16s;}
+@-webkit-keyframes bouncedelay {0%, 80%, 100% { -webkit-transform:scale(0.0) }40% { -webkit-transform:scale(1.0) }}
+@keyframes bouncedelay {0%, 80%, 100% { transform:scale(0.0);-webkit-transform:scale(0.0);}40% { transform:scale(1.0);-webkit-transform:scale(1.0);}}
+
+
+
+
+
+/*分页*/
+.pagination .glyphicon{top:0;}
+.pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover,.pagination>.active>span,.pagination>.active>span:focus,.pagination>.active>span:hover {
+	background-color: #f4f4f4;
+	border-color: #DDD;
+	color: inherit;
+	cursor: default;
+	z-index: 2
+}
+.pagination>li>a,.pagination>li>span {
+	background-color: #FFF;
+	border: 1px solid #DDD;
+	color: inherit;
+	float: left;
+	line-height: 1.42857;
+	margin-left: -1px;
+	padding: 4px 10px;
+	position: relative;
+	text-decoration: none
+}
+
+
+
+.article{background-color:#fff;width:1200px;min-height:688px;border-color: #e7eaec;border-style:solid solid none;border-width: 1px 0px;padding: 40px;}
+.article .content{font-size: 15px;line-height: 26px;}
+.article .title{font-weight:600;color:#2F4050;line-height: 100px;}
+
+
+/*main-im css*/
+.main-im{ position:fixed; right: 10px; top:200px; z-index: 100; width: 110px; height: 272px; }
+.main-im .qq-a { display: block; width: 106px; height: 116px; font-size: 14px; color: #0484cd; text-align: center; position: relative; }
+.main-im .qq-a span { bottom: 5px; position: absolute; width: 90px; left: 10px; }
+.main-im .qq-hover-c { width: 70px; height: 70px; border-radius: 35px; position: absolute; left: 18px; top: 10px; overflow: hidden; z-index: 9; }
+.main-im .qq-container { z-index: 99; position: absolute; width: 109px; height: 118px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom: 1px solid #dddddd; background: url(../images/qq-icon-bg.png) no-repeat center 8px; }
+.main-im .img-qq {max-width: 60px; display: block; position: absolute; left: 6px; top: 3px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
+.main-im .im-qq:hover .img-qq{ max-width: 70px; left: 1px; top: 8px; position: absolute; }
+.main-im .im_main {background: #F9FAFB; border: 1px solid #dddddd; border-radius: 10px; background: #F9FAFB;display:none;}
+.main-im .im_main .im-tel { color: #000000; text-align: center; width: 109px; height: 105px; border-bottom: 1px solid #dddddd; }
+.main-im .im_main .im-tel div{font-weight:bold;font-size: 12px;margin-top:11px;}
+.main-im .im_main .im-tel .tel-num { font-family: Arial; font-weight: bold; color: #e66d15;}
+.main-im .im_main .im-tel:hover { background: #fafafa; }
+.main-im .im_main .weixing-container {width: 55px; height: 47px; border-right: 1px solid #dddddd; background: #f5f5f5; border-bottom-left-radius: 10px; background: url(../images/weixing-icon.png) no-repeat center center;float:left;}
+.main-im .im_main .weixing-show {width: 112px; height: 172px; background: #ffffff; border-radius: 10px; border: 1px solid #dddddd; position: absolute; left: -125px; top: -126px; }
+.main-im .im_main .weixing-show .weixing-sanjiao {width:0; height: 0; border-style: solid; border-color: transparent transparent transparent #ffffff; border-width: 6px; left: 112px; top: 134px; position: absolute; z-index: 2;}
+.main-im .im_main .weixing-show .weixing-sanjiao-big { width: 0; height: 0; border-style: solid; border-color: transparent transparent transparent #dddddd; border-width: 8px; left: 112px; top: 132px; position: absolute; }
+.main-im .im_main .weixing-show .weixing-ma { width: 104px; height: 103px; padding-left: 5px; padding-top: 5px; }
+.main-im .im_main .weixing-show .weixing-txt{position:absolute;top:110px;left:7px;width:100px;margin:0 auto; text-align:center;}
+.main-im .im_main .go-top { width: 50px; height: 47px; background: #f5f5f5; border-bottom-right-radius: 10px; background: url(../images/toTop-icon.png) no-repeat center center;float:right;}
+.main-im .im_main .go-top a { display: block; width: 52px; height: 47px; }
+.main-im .close-im { position: absolute; right: 10px; top: -12px; z-index: 100; width: 24px; height: 24px; }
+.main-im .close-im a { display: block; width: 24px; height: 24px; background: url(../images/close_im.png) no-repeat left top; }
+.main-im .close-im a:hover { text-decoration: none; }
+.main-im .open-im { cursor: pointer; margin-left: 68px; width: 40px; height: 133px; background: url(../images/open_im.png) no-repeat left top; }
+
+    

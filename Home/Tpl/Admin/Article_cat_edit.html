@@ -1,0 +1,21 @@
+<include file="Index:header"/>
+
+<!-- 转移分类 -->
+<div class="ibox-content">
+	<div class="form-group">
+	<form action="Admin/Article_cat/edit/act/doMoveTo" method="post">
+		<input type="hidden" name='id' value="{$row.cat_id}"/>
+		<label class="col-sm-2 control-label">转移到</label>
+		<div class="col-sm-10">
+			<select name="parent_id" class="form-control m-b">
+				<option value="0">顶级分类</option>
+				{$article_cat_list}
+			</select>		
+		</div>
+		<button class="btn btn-block btn-primary" type="submit" style="margin-top:3px;">提 交</button>
+	</form>
+	</div>
+</div>
+<include file="Index:footer"/>
+
+

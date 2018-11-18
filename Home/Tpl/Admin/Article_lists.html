@@ -1,0 +1,102 @@
+<if condition="$full_page">
+<include file="Index:header"/>
+<div class="form-div">
+<form action="javascript:search()" name="searchForm">
+	<i class="fa fa-search"></i>
+	<select name="cat_id" id="cat_id" class="select">
+		<option value="">全部分类</option>
+		<?php echo $article_cat_list=d('Article_cat')->article_cat_list();?>
+	</select>
+	<select name="status" id="status" class="select">
+	  <option value="99">审核状态</option>
+	  <option value="1">是</option>
+	  <option value="0">否</option>
+	  <option value="4">已删除</option>
+	</select>
+	关键字： <input class="keyword" type="text" name="keyword" id="keyword" /> 
+	<input type="submit" value="搜索" class="button" />  信息标题
+</form>
+</div>
+<script type="text/javascript">
+function search(){
+	listTable.filter.cat_id =   $('#cat_id').val(); 
+	listTable.filter.status =   $('#status').val(); 
+	listTable.filter.keyword =   $.trim($('#keyword').val()); 
+	listTable.filter.page = 1;
+	listTable.loadList();
+}
+</script>
+
+<form method="post" action="" name="listForm" id="listForm">
+<div class="list-div ibox-content" id="listDiv">
+</if>
+
+<table class="table table-striped table-hover" id='list-table'>
+<thead>
+  <tr>
+	<th width="6%"><input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox"><a href="javascript:listTable.sort('a.article_id');">ID</a>{$sort_article_id}</th>
+	<th><a href="javascript:listTable.sort('a.cat_id');">分类</a>{$sort_cat_id}</th>
+	<th><a href="javascript:listTable.sort('a.title');">标题</a>{$sort_title}</th>
+	<th><a href="javascript:listTable.sort('a.author');">作者</a>{$sort_author}</th>
+	<th><a href="javascript:listTable.sort('a.add_time');">添加时间</a>{$sort_add_time}</th>
+	<th><a href="javascript:listTable.sort('a.sort_order');" title="从大到小排序">排序</a>{$sort_sort_order}</th>
+	<th><a href="javascript:listTable.sort('a.status');">审核状态</a>{$sort_status}</th>
+	<th>操作</th>
+  </tr>
+</thead>
+<tbody>
+<foreach name='lists' item='list'>
+	<tr>
+		<td align="center"><input name="checkboxes[]" type="checkbox" value="{$list.article_id}" /> {$list.article_id}</td>
+		<td><span onclick="javascript:listTable.edit(this, 'edit/act/cat_name', {$list.article_id})">{$list.cat_name|default='N/A'}</span></td>
+		<td><span onclick="javascript:listTable.edit(this, 'edit/act/title', {$list.article_id})">{$list.title|default='N/A'}</span></td>
+		<td><span onclick="javascript:listTable.edit(this, 'edit/act/author', {$list.article_id})">{$list.author|default='N/A'}</span></td>
+		<td>{$list.add_time|format_time}</td>
+		<td><span onclick="javascript:listTable.edit(this, 'edit/act/sort_order', {$list.article_id})">{$list.sort_order|default='N/A'}</span></td>
+		<td><if condition="$list['status'] eq 4">已删除<else/>
+		<img src="Public/admin/images/<if condition="$list['status'] eq 1">yes<else/>no</if>.gif" onclick="listTable.toggle(this, 'edit/act/status', {$list['article_id']})" />
+		</if></td>
+		<td>
+			<a href="article/show/id/{$list.article_id}" title="查看" target="_blank"><img src="Public/admin/images/icon_view.gif" class="je_icon"></a>&nbsp;
+			<a href="javascript:;" onclick="j.edit({$list.article_id})" title="编辑"><img src="Public/admin/images/icon_edit.gif" class="je_icon"></a>&nbsp;
+			<a href="javascript:;" onclick="listTable.remove({$list.article_id}, '您确定要删除？')" title="删除"><img src="Public/admin/images/icon_drop.gif" class="je_icon"></a></td>
+	</tr>
+</foreach>
+	<empty name="lists"><tr><td class="no-records" colspan="20">没有记录</td></tr></empty>
+	<tr>
+		<td align="right" nowrap="true" colspan="20">
+		<include file="Index:page"/>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+<if condition="$full_page">
+</div>
+<div class="mt_5 batch">
+	<input type="submit" id="btnSubmit1" value="批量审核" disabled="true" class="btn btn-primary btn-xs" onclick="$('#listForm').attr('action','Admin/{:trim(MODULE_NAME)}/edit/act/batch_check'); return confirm('您确定要批量通过审核？');"/>
+	<input type="submit" id="btnSubmit2" value="批量删除" disabled="true" class="btn btn-primary btn-xs" onclick="$('#listForm').attr('action','Admin/{:trim(MODULE_NAME)}/del'); return confirm('您确定要批量删除？');"/>
+	<span class="dib w80"></span>
+	<select name="cat_id" id="moveToId" class="select">
+		<option value="">全部分类</option>
+		<?php echo $article_cat_list;?>
+    </select>	
+	<input type="submit" id="btnSubmit3" value="批量转移分类" disabled="true" class="btn btn-primary btn-xs" onclick="$('#listForm').attr('action','Admin/{:trim(MODULE_NAME)}/edit/act/batchMoveTo');if(!$('#moveToId').val()){alert('请选择要转移到的分类');return false;} return confirm('您确定要批量转移分类？');"/>
+</div>
+</form>
+
+<script>
+j.add=function(){
+	j.minWin('Admin/{:trim(MODULE_NAME)}/add',"添加{:L('log.'.strtolower(MODULE_NAME))}");
+};
+j.edit=function(id){
+	j.minWin('Admin/{:trim(MODULE_NAME)}/edit/act/showEdit/id/'+id,"修改{:L('log.'.strtolower(MODULE_NAME))}");
+};
+listTable.recordCount = {$record_count};
+listTable.pageCount = {$page_count};
+<foreach name='filter' item='item' key='key'>
+listTable.filter.{$key} = '{$item}';
+</foreach>
+</script>
+<include file="Index:footer"/>
+</if>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html><!--<![endif]-->
+<head>
+	<meta charset=UTF-8 />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
+	<meta name=keywords content="{$keywords}"/>
+	<meta name=Description content="{$description}"/>
+	<base href="__ROOT__/"/>
+	<title>{$title}</title>
+	{:css_creat_cdn('layui,bootstrap,font-awesome,animate')}
+    <link href="Public/h+/css/style.css" rel="stylesheet">
+    <link href="Public/css/user.css" rel="stylesheet">
+	<include file="User:header"/>
+</head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<span class="label label-success pull-right">单位元</span>
+						<h5>佣金帐户</h5>
+					</div>
+					<div class="ibox-content">
+						<h1 class="no-margins">{:price_format(user('gold_coin'),0)}</h1>
+						<a href="user/money_log.html?type=1" onclick="return j.win(this,'#user_money_log');"><div class="stat-percent font-bold text-success">明细 <i class="fa fa-level-up"></i></div></a>
+						<small>人民币</small>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<span class="label label-info pull-right">单位元</span>
+						<h5>本金帐户</h5>
+					</div>
+					<div class="ibox-content">
+						<h1 class="no-margins">
+						{:price_format(user('money'),0)}
+						<a href="user/recharge.html" onclick="return j.win(this,'#user_recharge');"><span class="label label-danger pull-right">充值</span></a>
+						</h1>
+						<a href="user/money_log.html" onclick="return j.win(this,'#user_money_log');"><div class="stat-percent font-bold text-info">明细 <i class="fa fa-level-up"></i></div></a>
+						<small>人民币</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<a href="user/task_add.html" onclick="return j.win(this,'#user_task_add');">
+			<div class="col-sm-2">
+				<div class="widget style1 navy-bg">		
+					<div class="row vertical-align">
+						<div class="col-xs-3">
+							<i class="glyphicon glyphicon-cloud-upload fa-3x"></i>
+						</div>
+						<div class="col-xs-9 text-right">
+							<h2 class="font-bold">发布任务</h2>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			</a>
+			<a href="user/manage.html" onclick="return j.win(this,'#user_manage');">
+			<div class="col-sm-2">
+				<div class="widget style1 lazur-bg">
+					<div class="row vertical-align">
+						<div class="col-xs-3">
+							<i class="glyphicon glyphicon-wrench fa-3x"></i>
+						</div>
+						<div class="col-xs-9 text-right">
+							<h2 class="font-bold">推广管理</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			</a>
+			<a href="user/view_manage.html" onclick="return j.win(this,'#user_view_manage');">
+			<div class="col-sm-2">
+				<div class="widget style1 navy-bg">
+					<div class="row vertical-align">
+						<div class="col-xs-3">
+							<i class="glyphicon glyphicon-eye-open fa-3x"></i>
+						</div>
+						<div class="col-xs-9 text-right">
+							<h2 class="font-bold">浏览管理<span class="label label-warning pull-right"></span></h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			</a>
+			<a href="user/money_log.html" onclick="return j.win(this,'#user_money_log');">
+			<div class="col-sm-2">
+				<div class="widget style1 lazur-bg">
+					<div class="row vertical-align">
+						<div class="col-xs-3">
+							<i class="glyphicon glyphicon-credit-card fa-3x"></i>
+						</div>
+						<div class="col-xs-9 text-right">
+							<h2 class="font-bold">资金明细</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			</a>
+			<a href="user/store.html" onclick="return j.win(this,'#store');">
+			<div class="col-sm-2">
+				<div class="widget style1 navy-bg">
+					<div class="row vertical-align">
+						<div class="col-xs-3">
+							<i class="glyphicon glyphicon-paperclip fa-3x"></i>
+						</div>
+						<div class="col-xs-9 text-right">
+							<h2 class="font-bold">绑定店铺</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			</a>
+			<a href="user/info.html" onclick="return j.win(this,'#user_info');">
+			<div class="col-sm-2">
+				<div class="widget style1 yellow-bg">
+					<div class="row vertical-align">
+						<div class="col-xs-3">
+							<i class="fa fa-user fa-3x"></i>
+						</div>
+						<div class="col-xs-9 text-right">
+							<h2 class="font-bold">个人设置</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			</a>
+		</div>		
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>邀请商家注册链接</h5>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-sm-3 text-center">
+								<div style="margin:10 auto;" id="ad_qcode"></div>
+							</div>
+							<div class="col-sm-9">
+								<p class="font-90 text-muted m-b-1">将商家注册链接发送给朋友注册,您可获得推广佣金</p>
+								<input type="text" class="form-control" id="turl" value="__ROOT__/user/reg.html?recommend={:session('uid')}">
+								<br/>
+								<button class="btn btn-danger" href="javascript:" id="fuzhi">复制链接</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>邀请买家注册链接</h5>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-sm-3 text-center">
+								<div style="margin:10 auto;" id="ad_qcode1"></div>
+							</div>
+							<div class="col-sm-9">
+								<p class="font-90 text-muted m-b-1">将买家注册链接发送给朋友注册,您可获得推广佣金</p>
+								<input type="text" class="form-control" id="turl1" value="__ROOT__/user/reg.html?recommend={:session('uid')}&type=1">
+								<br/>
+								<button class="btn btn-danger" href="javascript:" id="fuzhi1">复制链接</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+<include file="User:footer"/>
+{:js_creat_cdn('jquery,bootstrap,layui,jquery.qrcode')}
+<script src="__ROOT__/Public/user.js"></script>
+<div class="main-im">
+    <div id="open_im" class="open-im">&nbsp;</div>
+    <div class="im_main" id="im_main">
+        <div id="close_im" class="close-im"><a href="javascript:void(0);" title="点击关闭">&nbsp;</a></div>
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=275386769&site=qq&menu=yes" class="im-qq qq-a" title="在线QQ客服" target="_blank">
+            <div class="qq-container"></div>
+            <div class="qq-hover-c">
+                <img class="img-qq" src="Public/images/qq.png">
+            </div>
+            <span>QQ在线咨询</span> </a>
+            <div class="im-tel">
+                <div>客服工作时间</div>
+                <div class="tel-num">09:00-18:00</div>
+                <div>充值工作时间</div>
+                <div class="tel-num">09:00-22:00</div>
+            </div>
+        <div class="im-footer" style="position: relative">
+            <div class="weixing-container">
+                <div class="weixing-show">
+                    <div class="weixing-txt">
+                        微信扫一扫 
+                    </div>
+                    <img class="weixing-ma" src="Public/images/weixing-ma.jpg"> 
+                    <div class="weixing-sanjiao"></div>
+                    <div class="weixing-sanjiao-big"></div>
+                </div>
+            </div>
+            <div class="go-top"><a href="javascript:;" title="返回顶部"></a></div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</div>
+<script>
+$(function () {
+	$('#close_im').bind('click', function () {
+        $('#main-im').css("height", "0");
+        $('#im_main').hide();
+        $('#open_im').show();
+    });
+    $('#open_im').bind('click', function (e) {
+        $('#main-im').css("height", "272");
+        $('#im_main').show();
+        $(this).hide();
+    });
+    $('.go-top').bind('click', function () {
+        $(window).scrollTop(0);
+    });
+    $(".weixing-container").bind('mouseenter', function () {
+        $('.weixing-show').show();
+    })
+    $(".weixing-container").bind('mouseleave', function () {
+        $('.weixing-show').hide();
+    });
+});
+</script>
+</body></html>

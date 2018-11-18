@@ -1,0 +1,41 @@
+<include file="Public:header"/>	
+<div class="ibox-content">
+	<form name="theForm" id="theForm" method="post" action="Admin/Admin/{$action}" class="form-horizontal" onsubmit="return chk();">
+		<div class="form-group"><label class="col-sm-2 control-label">管理员</label><div class="col-sm-5">
+			<input name="name" maxlength="20" value="{$user.username}" class="form-control"></div></div>
+		<div class="form-group"><label class="col-sm-2 control-label">邮箱地址</label><div class="col-sm-5">
+			<input name="email" value="{$user.email}" class="form-control"></div></div>
+		<if condition="$action eq 'edit'">
+		<div class="form-group"><label class="col-sm-2 control-label">旧密码</label><div class="col-sm-5">
+			<input type="password" name="oldpass" id="oldpass" maxlength="32" autocomplete="off" class="form-control"></div><div class="col-sm-5">密码不要修改请留空</div></div>
+		</if>
+		<div class="form-group"><label class="col-sm-2 control-label"><if condition="$action eq 'edit'">新</if>密码</label><div class="col-sm-5">
+			<input type="password" name="pass" id="pass" maxlength="32" autocomplete="off" class="form-control"></div></div>
+		<div class="form-group"><label class="col-sm-2 control-label">确认密码</label><div class="col-sm-5">
+			<input type="password" id="pass_confirm" name="pass_confirm" maxlength="32" autocomplete="off" class="form-control"></div></div>
+		<div class="form-group"><label class="col-sm-2 control-label">角色选择</label><div class="col-sm-5">
+			<select name="select_role" id="select_role" class="form-control m-b">
+				<option value="">请选择...</option>
+				<foreach name='select_role' item='list'>
+				<option value="{$list.role_id}" <if condition="$list['role_id'] eq $user['role_id']"> selected="selected" </if> >{$list.role_name}</option>
+				</foreach>
+			  </select></div></div>
+		<div class="form-group"><div class="col-sm-offset-2 col-sm-5">
+			<input type="hidden" name="act" value="{$form_act}" />
+			<input type="hidden" name="id" value="{$user.admin_id}" />
+			<button class="btn btn-block btn-primary" type="submit">提 交</button>
+		</div></div>	  
+	</form>
+</div>
+<script>
+function chk(){
+	<if condition="$action eq 'edit'">
+		if($('#pass').val()!=$('#pass_confirm').val()){
+			alert("确认密码不正确");
+			return false;
+		}
+	</if>
+	return true;
+}
+</script>
+<include file="Public:footer"/>

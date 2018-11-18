@@ -1,0 +1,36 @@
+<if condition="$full_page">
+<include file="Index:header"/>
+
+<form method="post" action="/Admin/Admin/lists" name="listForm" onsubmit="return false">
+<div class="list-div ibox-content" id="listDiv">
+</if>
+
+<table class="table table-striped table-hover" id='list-table'>
+<thead>
+  <tr>
+    <th>角色名</th>
+    <th>角色描述</th>
+    <th>操作</th>
+  </tr>
+</thead>
+<tbody>
+  <foreach name='role_list' item='list'>
+  <tr>
+    <td class="first-cell" >{$list.role_name}</td>
+    <td class="first-cell" >{$list.role_describe}</td>
+    <td align="center">
+      <a href="Admin/{:trim(MODULE_NAME)}/edit?id={$list.role_id}" title="编辑全局权限"><img src="Public/admin/images/icon_edit.gif" class="je_icon"></a>
+	  &nbsp;<a href="Admin/Account_auth/edit?id={$list.role_id}" title="编辑帐户权限"><img src="Public/admin/images/icon_add.gif" class="je_icon"/></a>
+	  &nbsp;<a href="javascript:;" onclick="listTable.remove({$list.role_id}, '您确定要删除？')" title="删除"><img src="Public/admin/images/icon_drop.gif" class="je_icon"></a>
+</td>
+  </tr>
+  </foreach>
+</tbody>
+</table>
+
+<if condition="$full_page">
+</div>
+</form>
+<include file="Index:footer"/>
+</if>
+
