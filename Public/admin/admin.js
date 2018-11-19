@@ -163,6 +163,7 @@
 			  content: url
 			});	
 		});
+		return false;
 	};
 	/**********后台用********/
 	j.doUserInfo=function(that){

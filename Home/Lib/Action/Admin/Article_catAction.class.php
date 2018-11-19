@@ -26,7 +26,8 @@ class Article_catAction extends AdministrationAction{
 			$result='该分类下还有子分类';
 		}elseif(db('article')->where(array('cat_id'=>$id))->count() > 0){/* 非空的分类不允许删除 */
 			$result='分类下还有文章';
-		}elseif(($name=$this->exc->get_name($id)) && $this->exc->drop($id)){
+		}elseif($this->exc->drop($id)){
+			$name=$this->exc->get_name($id);
 			//删除缓冲
 			S('article_cat_list',null);
 			admin_log("ID:{$id} 分类名{$name}", 'remove', 'article_cat');

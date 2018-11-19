@@ -34,10 +34,10 @@ class Article_catModel{
 		static $res = NULL;
 		if ($res === NULL){
 			$data=false;
-			$data=hm('article_cat_list');
+			$data=S('article_cat_list');
 			if ($data == false){		
 				$res=db('article_cat c')->select('c.*,COUNT(s.cat_id) has_children,COUNT(a.article_id) aricle_num ')->join('article_cat s','s.parent_id=c.cat_id')->join('article a','a.cat_id=c.cat_id')->groupBy(array('c.cat_id'))->order('c.parent_id,c.sort_order DESC')->query();
-				hm('article_cat_list', $res);
+				S('article_cat_list', $res);
 			}else{
 				$res = $data;
 			}

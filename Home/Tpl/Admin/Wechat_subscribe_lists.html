@@ -27,6 +27,7 @@
     					<th class="text-center">{$lang.sub_province}</th>
     					<th class="text-center">{$lang.sub_time}</th>
 						<th class="text-center">{$lang.sub_binduser}</th>
+						<th class="text-center">核销员</th>
     					<th class="text-center" width="10%">{$lang.handler}</th>
     				</tr>
     				<foreach name="list" key="key" item="val">
@@ -48,16 +49,13 @@
                         </td>
     					<td class="text-center">{$val['province']} - {$val['city']}</td>
     					<td class="text-center"><?php echo date('Y-m-d H:i:s', $val['subscribe_time']) ?></td>
+						<td class="text-center">{:$val['user_name']?$val['user_name']:'暂未绑定'}</td>
 						<td class="text-center">
-                            <if condition="$val['user_name']">
-                                {$val['user_name']}
-                            <else/>
-                                暂未绑定
-                            </if>
-                        </td>
+							<img src="Public/admin/images/{:$val['is_verify']?'yes':'no'}.gif" onclick="listTable.toggle(this, 'edit/act/is_verify', {$val['wu_id']})" />
+						</td>
     					<td class="text-center">
-    						<a href="{:U('wechat_custom_message/lists', array('wu_id'=>$val['wu_id']))}" class="btn btn-lg" title="{$lang.custom_message_list}"><span class="glyphicon glyphicon-eye-open"></span></a>
-    						<a href="{:U('wechat_custom_message/send', array('wu_id'=>$val['wu_id']))}" class="btn btn-lg fancybox fancybox.iframe" title="{$lang.send_custom_message}"><span class="glyphicon glyphicon-comment"></span></a>
+    						<a onclick=j.minWin("{:U('wechat_custom_message/lists', array('wu_id'=>$val['wu_id']))}","{$lang.custom_message_list}") class="btn btn-lg" title="{$lang.custom_message_list}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+    						<a onclick=j.minWin("{:U('wechat_custom_message/send', array('wu_id'=>$val['wu_id']))}","{$lang.send_custom_message}") class="btn btn-lg fancybox fancybox.iframe" title="{$lang.send_custom_message}"><span class="glyphicon glyphicon-comment"></span></a>
     					</td>
     				</tr>
     				</foreach>

@@ -132,7 +132,33 @@ class Wechat_subscribeAction extends Wechat_baseAction{
 		admin_log('全部', 'update', 'wechat_user');
 		$this->redirect('lists');
 	}
+	public function edit(){
+		$this->exc=exchange('wechat_user','wu_id','openid');
+		if(IS_AJAX){
+			$id  = i('id',0,'intval');
+			$val = i('val','','trim,jeHtmlspecialchars');
+			$error='';
+			$result=NULL;
+			switch($_REQUEST['act']){
+				//修改状态
+				case 'is_verify':
+					$val=int01($val);
+					if(!empty($id) && $this->exc->edit(array('is_verify'=>$val), $id)){
+						admin_log('ID:'.$id.' 编辑是否核销员:'.$val, 'edit', MODULE_NAME);
+						$result=$val;
+					}
+					break;
 
+			}
+			if($result!==NULL){
+				echo ejson(array('status'=>true,'data'=>$result));
+			}else{	
+				echo ejson(array('status'=>false,'data'=>$error.'操作失败，请重试！'));
+			}
+		}
+		
+		
+	}	
 
 	
 }

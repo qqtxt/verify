@@ -254,8 +254,10 @@ CREATE TABLE IF NOT EXISTS `je_wechat_user` (
 	`bein_kefu`	tinyint(1) unsigned NOT NULL DEFAULT '0'		COMMENT '是否处在多客服流程',
 	`isbind`	tinyint(1) unsigned NOT NULL DEFAULT '0'		COMMENT '是否绑定过',
 	`is_fenhong` tinyint(1) unsigned NOT NULL DEFAULT '0'		COMMENT '是否关注分红过 多次关注不分红',
+	`is_verify` tinyint(1) unsigned NOT NULL DEFAULT '0'		COMMENT '是否核销员0否  1是',
 	PRIMARY KEY (`wu_id`),
-	KEY `openid` (`openid`)
+	KEY `openid` (`openid`),
+	KEY `is_verify` (`is_verify`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 			COMMENT '微信粉丝';
 
 
@@ -471,6 +473,7 @@ INSERT INTO `je_privilege` (`pid`, `up_id`, `name`, `relevance`, `comment`) VALU
 (NULL, 1, 'Wechat_subscribe_lists', '', '查看粉丝列表'),
 (NULL, 1, 'Wechat_subscribe_move', '',  '粉丝转移分组'),
 (NULL, 1, 'Wechat_subscribe_update', '','同步粉丝管理'),
+(NULL, 1, 'Wechat_subscribe_edit', '','修改粉丝'),
 (NULL, 1, 'Wechat_user_group_sync', '', '更新同步用户分组'),
 (NULL, 1, 'Wechat_user_group_edit', '', '添加/编辑用户分组'),
 (NULL, 1, 'Wechat_reply_subscribe', '', '关注自动回复管理'),
